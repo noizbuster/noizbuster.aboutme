@@ -25,22 +25,28 @@
       </v-flex>
 
       <v-flex xs12 mt-5 pa-2 class="font-weight-bold">
-        <div class="primary--text font-weight-regular display-2">Back-End</div>
-        <skill-list :skills="skills_backend"></skill-list>
+        <v-checkbox v-for="i in tagFilters" :key="'tagFilter'+i" v-model="tag" :label="i.label"
+                    :value="i.value"></v-checkbox>
+      </v-flex>
+
+
+      <v-flex xs12 mt-5 pa-2 class="font-weight-bold">
+        <div class="primary--text font-weight-regular display-1">Back-End</div>
+        <skill-list :skills="skills"></skill-list>
       </v-flex>
 
       <v-flex xs12 mt-5 pa-2 class="font-weight-bold">
-        <div class="primary--text font-weight-regular display-2">Front-End</div>
+        <div class="primary--text font-weight-regular display-1">Front-End</div>
         <skill-list :skills="skills_frontend"></skill-list>
       </v-flex>
 
       <v-flex xs12 mt-5 pa-2 class="font-weight-bold">
-        <div class="primary--text font-weight-regular display-2">Computer Languages</div>
+        <div class="primary--text font-weight-regular display-1">Computer Languages</div>
         <skill-list :skills="skills_planguage"></skill-list>
       </v-flex>
 
       <v-flex xs12 mt-5 pa-2 class="font-weight-bold">
-        <div class="primary--text font-weight-regular display-2">ETC</div>
+        <div class="primary--text font-weight-regular display-1">ETC</div>
         <skill-list :skills="skills_etc"></skill-list>
       </v-flex>
 
@@ -48,7 +54,7 @@
       <v-flex pl-2 mt-5 class="primary--text font-weight-regular display-3">Skills</v-flex>
 
       <v-flex xs12 pa-2 class="font-weight-bold">
-        <div class="primary--text font-weight-regular display-2">Human Languages</div>
+        <div class="primary--text font-weight-regular display-1">Spoken Languages</div>
         <skill-list :skills="skills_hlanguage"></skill-list>
       </v-flex>
 
@@ -63,6 +69,10 @@
   import SkillList from '~/components/SkillList.vue'
   import mySkills from '~/assets/skills'
 
+  const tagFilters = mySkills.tagFilters;
+  // const tags_values = _.reduce(tagFilter, (result, value, key)=>{
+  //   return result.push(value.value);
+  // }, []);
   export default {
     components: {
       SkillBadge,
@@ -72,11 +82,8 @@
     },
     data() {
       return {
-        skills_backend: mySkills.skills.backend,
-        skills_frontend: mySkills.skills.frontend,
-        skills_planguage: mySkills.skills.planguage,
-        skills_hlanguage: mySkills.skills.hlanguage,
-        skills_etc: mySkills.skills.comportable,
+        skills: _.filter(mySkills.skills, {tag: 'backend'}),
+        tag_selected: []
       }
     }
   }

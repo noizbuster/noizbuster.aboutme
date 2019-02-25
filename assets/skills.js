@@ -1,6 +1,7 @@
 const backend = {
   node: {
     name: 'Node.js', level: 'expert', img: '/skill_icons/nodejs.png',
+    tag: 'backend',
     sub_skills: [
       {name: 'express', level: 'expert'},
       {name: 'ActionHeroJS', level: 'skilled'},
@@ -11,13 +12,15 @@ const backend = {
     ]
   },
   express: {
-    name: 'express', level: 'expert', img: '/skill_icons/express.png',
+    name: 'Express', level: 'expert', img: '/skill_icons/express.png',
+    tag: 'backend',
     sub_skills: [
       {name: 'multer', level: 'expert'}
     ]
   },
   mongodb: {
     name: 'MongoDB', level: 'skilled', img: '/skill_icons/mongodb.png',
+    tag: 'backend',
     sub_skills: [{name: 'Replica Set', level: 'skilled'},
       {name: 'v4.0^', level: 'skilled'},
       {name: 'ACID Transaction', level: 'skilled'}
@@ -179,9 +182,16 @@ const knowledge = {
 };
 
 export const skills = {
-  backend, frontend, planguage, hlanguage, comportable, knowledge
+  ...backend, ...frontend, ...planguage, ...hlanguage, ...comportable, ...knowledge
 };
 
+const tagFilters = [
+  {value: 'backend', label: 'Back-End', label_ko: '백엔드'},
+  {value: 'frontend', label: 'Front-End', label_ko: '프론트엔드'},
+  {value: 'language', label: 'Programming Language', label_ko: '프로그래밍언어'},
+  {value: 'spokenLanguage', label: 'Back-End', label_ko: '언어'}
+];
+
 export default {
-  skills
+  skills, tagFilters
 }

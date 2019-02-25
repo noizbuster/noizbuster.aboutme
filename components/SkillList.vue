@@ -4,18 +4,15 @@
     <v-expansion-panel-content
       v-for="(item, idx) in skills"
       :key="'skills'+idx"
-      :readonly="item.projects.length === 0"
     >
-      <v-icon v-if="item.projects.length === 0"
-              slot="actions"
-              color="primary">remove
-      </v-icon>
+      <!--:readonly="item.projects.length === 0"-->
+      <!--<v-icon v-if="item.projects.length === 0"-->
+              <!--slot="actions"-->
+              <!--color="primary">remove-->
+      <!--</v-icon>-->
       <!--head-->
       <div slot="header">
         <v-layout wrap>
-          <v-flex v-if="item.img" xs4 sm3 md2 justify-center align-center class="text-xs-center" pa-1 pr-3>
-            <v-img :src="prefix + item.img||prefix + '/skill_icons/msa.png'" class="skill_icon" contain></v-img>
-          </v-flex>
           <v-flex xs8 sm9 md10>
             <v-layout column fill-height justify-center>
               <!--skill name-->
@@ -25,19 +22,22 @@
                   <v-flex class="headline" pl-2>{{ item.name }}</v-flex>
                 </v-layout>
               </v-flex>
-              <!--skill title & sub-skills-->
-              <v-flex v-if="item.sub_skills">
-                <tag-badge v-for="(subskill, si) in item.sub_skills" :key="si"
-                           :level="subskill.level" small label>
-                  {{ subskill.name }}
-                </tag-badge>
-              </v-flex>
             </v-layout>
           </v-flex>
         </v-layout>
       </div>
       <!--body-->
       <v-divider></v-divider>
+      <v-flex v-if="item.img" xs4 sm3 md2 justify-center align-center class="text-xs-center" pa-1 pr-3>
+        <v-img :src="prefix + item.img||prefix + '/skill_icons/msa.png'" class="skill_icon" contain></v-img>
+      </v-flex>
+      <!--skill title & sub-skills-->
+      <v-flex v-if="item.sub_skills">
+        <tag-badge v-for="(subskill, si) in item.sub_skills" :key="si"
+                   :level="subskill.level" small label>
+          {{ subskill.name }}
+        </tag-badge>
+      </v-flex>
       <v-list style="background: none">
         <v-subheader class="headline">
           Relative Project{{ item.projects.length > 1 ? 's' : '' }}
